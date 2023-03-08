@@ -1,0 +1,14 @@
+admin: 
+admin@gmail.com
+Sairam@123654
+
+
+users:
+vickyflyar@gmail.com
+user@123654
+
+slowqueso@gmail.com
+slowqueso@123654
+
+testuser@gmail.com
+testuser@123654
