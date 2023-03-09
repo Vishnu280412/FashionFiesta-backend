@@ -14,7 +14,7 @@ class Product {
                 if(parsedData.title.trim().length === 0) {
                     errors.push({msg: 'Title is required!!'});
                 }
-                if(parseInt(parsedData.price) < 1) {
+                if(parseInt(parsedData.price) <= 1) {
                     errors.push({msg: 'Price should be above ₹1!!'});
                 }
                 if(parseInt(parsedData.discount) < 0) {
