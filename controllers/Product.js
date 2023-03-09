@@ -105,7 +105,6 @@ class Product {
             const product = await ProductModel.findOne({_id: id});
             return res.status(200).json(product);
         } catch (error) {
-            console.log(error.message);
             return res.status(500).json({error: error.message});
         }
     }
