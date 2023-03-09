@@ -5,11 +5,15 @@ module.exports = [
     body('price').custom((value) => {
         if(parseInt(value) < 1) {
             throw new Error('Price should be more than ₹1!!');
+        } else {
+            return true;
         }
     }).trim().escape(),
     body('discount').custom((value) => {
         if(parseInt(value) < 0) {
             throw new Error('Discount should not be negative!!');
+        } else {
+            return true;
         }
     }).trim().escape(),
     body('category').not().isEmpty().trim().escape().withMessage('Category is required!!'),
@@ -17,6 +21,8 @@ module.exports = [
     body('stock').custom((value) => {
         if(parseInt(value) < 20) {
             throw new Error('Stock should be more than 20!!');
+        } else {
+            return true;
         }
     }).trim().escape()
 ]
