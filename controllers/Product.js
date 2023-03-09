@@ -94,7 +94,6 @@ class Product {
             const response = await ProductModel.find({}).skip(skip).limit(perPage).sort({updatedAt: -1});
             return res.status(200).json({products: response, perPage, count});
         } catch (error) {
-            console.log(error.message);
             return res.status(500).json({error: error.message});
         }
     }
@@ -105,7 +104,6 @@ class Product {
             const product = await ProductModel.findOne({_id: id});
             return res.status(200).json(product);
         } catch (error) {
-            console.log(error.message);
             return res.status(500).json({error: error.message});
         }
     }
