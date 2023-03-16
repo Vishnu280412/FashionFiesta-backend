@@ -12,6 +12,8 @@ module.exports = [
     body('discount').custom((value) => {
         if(parseInt(value) < 0) {
             throw new Error('Discount should not be negative!!');
+        } else if(parseInt(value) > 100) {
+            throw new Error('Discount should not exceed 100!!');
         } else {
             return true;
         }
