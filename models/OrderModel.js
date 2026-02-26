@@ -1,5 +1,9 @@
-const { Scheme, model, Schema } = require('mongoose')
+const { model, Schema } = require('mongoose')
 const orderSchema = new Schema({
+    checkoutSessionId: {
+        required: false,
+        type: String
+    },
     productId: {
         type: Schema.Types.ObjectId,
         ref: 'product'
@@ -37,6 +41,11 @@ const orderSchema = new Schema({
         type: Boolean
     }
 }, { timestamps: true });
+
+orderSchema.index(
+    { checkoutSessionId: 1, productId: 1, userId: 1, size: 1, color: 1 },
+    { unique: true, sparse: true }
+);
 
 const OrderModel = model('order', orderSchema);
 module.exports = OrderModel;

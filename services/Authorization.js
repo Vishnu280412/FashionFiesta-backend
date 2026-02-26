@@ -5,12 +5,17 @@ class Authorization {
     authorized(req, res, next) {
         const headerToken = req.headers.authorization;
         if(headerToken) {
-            const token = headerToken.split("Bearer ")[1];
-            const verified = jwt.verify(token, JWT_SECRET);
-            if(verified?.admin === true) {
-                next();
-            } else {
-                return res.status(401).json({errors: [{msg: "Please add a valid token"}]})
+            try {
+                const token = headerToken.split("Bearer ")[1];
+                const verified = jwt.verify(token, JWT_SECRET);
+                if(verified?.admin === true) {
+                    req.user = verified;
+                    next();
+                } else {
+                    return res.status(401).json({errors: [{msg: "Please add a valid token"}]})
+                }
+            } catch (error) {
+                return res.status(401).json({errors: [{msg: "Please add a valid token"}]});
             }
         } else {
             return res.status(401).json({errors: [{msg: "Unauthorized access without token!"}]})

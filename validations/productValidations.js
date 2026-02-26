@@ -21,8 +21,8 @@ module.exports = [
     body('category').not().isEmpty().trim().escape().withMessage('Category is required!!'),
     body('description').not().isEmpty().trim().escape().withMessage('Description is required!!'),
     body('stock').custom((value) => {
-        if(parseInt(value) < 20) {
-            throw new Error('Stock should be more than 20!!');
+        if(parseInt(value) < 0) {
+            throw new Error('Stock should not be negative!!');
         } else {
             return true;
         }
